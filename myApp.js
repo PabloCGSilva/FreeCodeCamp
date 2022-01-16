@@ -1,7 +1,7 @@
 import 'dotenv/config.js'
 import express from 'express'
-console.log(process.env)
 import mongoose from 'mongoose'
+console.log(process.env)
 mongoose.connect(process.env.MONGO_URI);
 
 let Person;
