@@ -16,8 +16,13 @@ import { join } from "path";
 import pkg from 'body-parser';
 const { urlencoded, json } = pkg;
 const router = Router();
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-const enableCORS = function (req, res, next) {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+function enableCORS(req, res, next) {
   if (!process.env.DISABLE_XORIGIN) {
     const allowedOrigins = ["https://www.freecodecamp.org"];
     const origin = req.headers.origin;
@@ -26,13 +31,12 @@ const enableCORS = function (req, res, next) {
       res.set({
         "Access-Control-Allow-Origin": origin,
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-        "Access-Control-Allow-Headers":
-          "Origin, X-Requested-With, Content-Type, Accept",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
       });
     }
   }
   next();
-};
+}
 
 // global setting for safety timeouts to handle possible
 // wrong callbacks that will never be called
