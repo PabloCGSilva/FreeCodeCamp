@@ -13,7 +13,8 @@ try {
 }
 import { readFile } from "fs";
 import { join } from "path";
-import { urlencoded, json } from "body-parser";
+import pkg from 'body-parser';
+const { urlencoded, json } = pkg;
 const router = Router();
 
 const enableCORS = function (req, res, next) {
