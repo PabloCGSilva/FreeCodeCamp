@@ -5,7 +5,7 @@
 
 import express, { Router } from "express";
 const app = express();
-import mongoose from mongoose;
+import mongoose from 'mongoose';
 /*try {
   mongoose = require("mongoose");
 } catch (e) {
