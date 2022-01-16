@@ -7,7 +7,7 @@ import express, { Router } from "express";
 const app = express();
 let mongoose;
 try {
-  import * as mongoose from "mongoose"
+  import { connect } from 'mongoose'
 } catch (e) {
   console.log(e);
 }
