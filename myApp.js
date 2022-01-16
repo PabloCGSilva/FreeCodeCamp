@@ -1,14 +1,12 @@
-import 'dotenv/config.js';
-import express from 'express';
-import mongoose from 'mongoose';
-console.log(process.env);
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
+import dotenv  from "dotenv"
+
+dotenv.config()
 
 let Person;
 
-function createAndSavePerson(done) {
+const createAndSavePerson = (done) => {
   done(null /*, data*/);
-}
+};
 
 const createManyPeople = (arrayOfPeople, done) => {
   done(null /*, data*/);
