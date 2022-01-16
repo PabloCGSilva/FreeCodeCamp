@@ -1,6 +1,8 @@
-require('dotenv').config();
-var mongoose = require('mongoose');
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+import 'dotenv/config.js'
+import express from 'express'
+console.log(process.env)
+import mongoose from 'mongoose'
+mongoose.connect(process.env.MONGO_URI);
 
 let Person;
 
