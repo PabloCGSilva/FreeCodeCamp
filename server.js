@@ -3,7 +3,7 @@
  * the verification process may break
  *******************************************/
 
-const express = require("express");
+import express, { Router } from "express";
 const app = express();
 var mongoose;
 try {
@@ -11,10 +11,10 @@ try {
 } catch (e) {
   console.log(e);
 }
-const fs = require("fs");
-const path = require("path");
-const bodyParser = require("body-parser");
-const router = express.Router();
+import { readFile } from "fs";
+import { join } from "path";
+import { urlencoded, json } from "body-parser";
+const router = Router();
 
 const enableCORS = function (req, res, next) {
   if (!process.env.DISABLE_XORIGIN) {
@@ -37,18 +37,18 @@ const enableCORS = function (req, res, next) {
 // wrong callbacks that will never be called
 const TIMEOUT = 10000;
 
-app.use(bodyParser.urlencoded({ extended: "false" }));
-app.use(bodyParser.json());
+app.use(urlencoded({ extended: "false" }));
+app.use(json());
 
 app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "views", "index.html"));
+  res.sendFile(join(__dirname, "views", "index.html"));
 });
 
 router.get("/file/*?", function (req, res, next) {
   if (req.params[0] === ".env") {
     return next({ status: 401, message: "ACCESS DENIED" });
   }
-  fs.readFile(path.join(__dirname, req.params[0]), function (err, data) {
+  readFile(join(__dirname, req.params[0]), function (err, data) {
     if (err) {
       return next(err);
     }
@@ -64,7 +64,7 @@ router.get("/is-mongoose-ok", function (req, res) {
   }
 });
 
-const Person = require("./myApp.js").PersonModel;
+import { PersonModel as Person } from "./myApp.js";
 
 router.use(function (req, res, next) {
   if (req.method !== "OPTIONS" && Person.modelName !== "Person") {
@@ -81,7 +81,7 @@ router.post("/mongoose-model", function (req, res, next) {
   res.json(p);
 });
 
-const createPerson = require("./myApp.js").createAndSavePerson;
+import { createAndSavePerson as createPerson } from "./myApp.js";
 router.get("/create-and-save-person", function (req, res, next) {
   // in case of incorrect function use wait timeout then respond
   var t = setTimeout(() => {
@@ -106,7 +106,7 @@ router.get("/create-and-save-person", function (req, res, next) {
   });
 });
 
-const createPeople = require("./myApp.js").createManyPeople;
+import { createManyPeople as createPeople } from "./myApp.js";
 router.post("/create-many-people", function (req, res, next) {
   Person.remove({}, function (err) {
     if (err) {
@@ -136,7 +136,7 @@ router.post("/create-many-people", function (req, res, next) {
   });
 });
 
-const findByName = require("./myApp.js").findPeopleByName;
+import { findPeopleByName as findByName } from "./myApp.js";
 router.post("/find-all-by-name", function (req, res, next) {
   var t = setTimeout(() => {
     next({ message: "timeout" });
@@ -160,7 +160,7 @@ router.post("/find-all-by-name", function (req, res, next) {
   });
 });
 
-const findByFood = require("./myApp.js").findOneByFood;
+import { findOneByFood as findByFood } from "./myApp.js";
 router.post("/find-one-by-food", function (req, res, next) {
   var t = setTimeout(() => {
     next({ message: "timeout" });
@@ -185,7 +185,7 @@ router.post("/find-one-by-food", function (req, res, next) {
   });
 });
 
-const findById = require("./myApp.js").findPersonById;
+import { findPersonById as findById } from "./myApp.js";
 router.get("/find-by-id", function (req, res, next) {
   var t = setTimeout(() => {
     next({ message: "timeout" });
@@ -210,7 +210,7 @@ router.get("/find-by-id", function (req, res, next) {
   });
 });
 
-const findEdit = require("./myApp.js").findEditThenSave;
+import { findEditThenSave as findEdit } from "./myApp.js";
 router.post("/find-edit-save", function (req, res, next) {
   var t = setTimeout(() => {
     next({ message: "timeout" });
@@ -240,7 +240,7 @@ router.post("/find-edit-save", function (req, res, next) {
   });
 });
 
-const update = require("./myApp.js").findAndUpdate;
+import { findAndUpdate as update } from "./myApp.js";
 router.post("/find-one-update", function (req, res, next) {
   var t = setTimeout(() => {
     next({ message: "timeout" });
@@ -270,7 +270,7 @@ router.post("/find-one-update", function (req, res, next) {
   });
 });
 
-const removeOne = require("./myApp.js").removeById;
+import { removeById as removeOne } from "./myApp.js";
 router.post("/remove-one-person", function (req, res, next) {
   Person.remove({}, function (err) {
     if (err) {
@@ -313,7 +313,7 @@ router.post("/remove-one-person", function (req, res, next) {
   });
 });
 
-const removeMany = require("./myApp.js").removeManyPeople;
+import { removeManyPeople as removeMany } from "./myApp.js";
 router.post("/remove-many-people", function (req, res, next) {
   Person.remove({}, function (err) {
     if (err) {
@@ -364,7 +364,7 @@ router.post("/remove-many-people", function (req, res, next) {
   });
 });
 
-const chain = require("./myApp.js").queryChain;
+import { queryChain as chain } from "./myApp.js";
 router.post("/query-tools", function (req, res, next) {
   var t = setTimeout(() => {
     next({ message: "timeout" });
