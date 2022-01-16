@@ -76,7 +76,7 @@ router.use(function (req, res, next) {
 router.post("/mongoose-model", function (req, res, next) {
   // try to create a new instance based on their model
   // verify it's correctly defined in some way
-  let p;
+  var p;
   p = new Person(req.body);
   res.json(p);
 });
@@ -84,7 +84,7 @@ router.post("/mongoose-model", function (req, res, next) {
 const createPerson = require("./myApp.js").createAndSavePerson;
 router.get("/create-and-save-person", function (req, res, next) {
   // in case of incorrect function use wait timeout then respond
-  let t = setTimeout(() => {
+  var t = setTimeout(() => {
     next({ message: "timeout" });
   }, TIMEOUT);
   createPerson(function (err, data) {
@@ -113,7 +113,7 @@ router.post("/create-many-people", function (req, res, next) {
       return next(err);
     }
     // in case of incorrect function use wait timeout then respond
-    let t = setTimeout(() => {
+    var t = setTimeout(() => {
       next({ message: "timeout" });
     }, TIMEOUT);
     createPeople(req.body, function (err, data) {
@@ -138,7 +138,7 @@ router.post("/create-many-people", function (req, res, next) {
 
 const findByName = require("./myApp.js").findPeopleByName;
 router.post("/find-all-by-name", function (req, res, next) {
-  let t = setTimeout(() => {
+  var t = setTimeout(() => {
     next({ message: "timeout" });
   }, TIMEOUT);
   Person.create(req.body, function (err, pers) {
@@ -162,10 +162,10 @@ router.post("/find-all-by-name", function (req, res, next) {
 
 const findByFood = require("./myApp.js").findOneByFood;
 router.post("/find-one-by-food", function (req, res, next) {
-  let t = setTimeout(() => {
+  var t = setTimeout(() => {
     next({ message: "timeout" });
   }, TIMEOUT);
-  let p = new Person(req.body);
+  var p = new Person(req.body);
   p.save(function (err, pers) {
     if (err) {
       return next(err);
@@ -187,10 +187,10 @@ router.post("/find-one-by-food", function (req, res, next) {
 
 const findById = require("./myApp.js").findPersonById;
 router.get("/find-by-id", function (req, res, next) {
-  let t = setTimeout(() => {
+  var t = setTimeout(() => {
     next({ message: "timeout" });
   }, TIMEOUT);
-  let p = new Person({ name: "test", age: 0, favoriteFoods: ["none"] });
+  var p = new Person({ name: "test", age: 0, favoriteFoods: ["none"] });
   p.save(function (err, pers) {
     if (err) {
       return next(err);
@@ -212,10 +212,10 @@ router.get("/find-by-id", function (req, res, next) {
 
 const findEdit = require("./myApp.js").findEditThenSave;
 router.post("/find-edit-save", function (req, res, next) {
-  let t = setTimeout(() => {
+  var t = setTimeout(() => {
     next({ message: "timeout" });
   }, TIMEOUT);
-  let p = new Person(req.body);
+  var p = new Person(req.body);
   p.save(function (err, pers) {
     if (err) {
       return next(err);
@@ -242,10 +242,10 @@ router.post("/find-edit-save", function (req, res, next) {
 
 const update = require("./myApp.js").findAndUpdate;
 router.post("/find-one-update", function (req, res, next) {
-  let t = setTimeout(() => {
+  var t = setTimeout(() => {
     next({ message: "timeout" });
   }, TIMEOUT);
-  let p = new Person(req.body);
+  var p = new Person(req.body);
   p.save(function (err, pers) {
     if (err) {
       return next(err);
@@ -276,10 +276,10 @@ router.post("/remove-one-person", function (req, res, next) {
     if (err) {
       return next(err);
     }
-    let t = setTimeout(() => {
+    var t = setTimeout(() => {
       next({ message: "timeout" });
     }, TIMEOUT);
-    let p = new Person(req.body);
+    var p = new Person(req.body);
     p.save(function (err, pers) {
       if (err) {
         return next(err);
@@ -319,7 +319,7 @@ router.post("/remove-many-people", function (req, res, next) {
     if (err) {
       return next(err);
     }
-    let t = setTimeout(() => {
+    var t = setTimeout(() => {
       next({ message: "timeout" });
     }, TIMEOUT);
     Person.create(req.body, function (err, pers) {
@@ -366,7 +366,7 @@ router.post("/remove-many-people", function (req, res, next) {
 
 const chain = require("./myApp.js").queryChain;
 router.post("/query-tools", function (req, res, next) {
-  let t = setTimeout(() => {
+  var t = setTimeout(() => {
     next({ message: "timeout" });
   }, TIMEOUT);
   Person.remove({}, function (err) {
