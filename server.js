@@ -5,12 +5,12 @@
 
 import express, { Router } from "express";
 const app = express();
-var mongoose;
-try {
-  import mongoose from "mongoose";
+import mongoose from mongoose;
+/*try {
+  mongoose = require("mongoose");
 } catch (e) {
   console.log(e);
-}
+}*/
 import { readFile } from "fs";
 import { join } from "path";
 import pkg from 'body-parser';
