@@ -29,7 +29,7 @@ const enableCORS = function (req, res, next) {
           "Origin, X-Requested-With, Content-Type, Accept",
       });
     }
-  }npm start
+  }
   next();
 };
 
