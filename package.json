@@ -1,5 +1,4 @@
-{
-    "type": "module",
+{   "type": "module",
     "name": "fcc-mongo-mongoose-challenges",
     "version": "0.0.1",
     "description": "A boilerplate project",
