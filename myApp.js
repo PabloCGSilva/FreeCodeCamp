@@ -22,6 +22,7 @@ const person = new Person({name:'john', age:'21', favoriteFoods:['fish','beer']}
 person.save(function(err, person){
   if (err) throw err;
   console.log(person)
+  done();
 });
 
 
