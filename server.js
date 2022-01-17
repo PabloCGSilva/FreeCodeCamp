@@ -14,7 +14,7 @@ const { Schema } = mongoose;
     age: Number,
     favoriteFoods: [{}],
   });
-
+  const Person = mongoose.model('Person', personSchema);
 
 /*try {
   mongoose = require("mongoose");
