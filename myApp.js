@@ -19,10 +19,12 @@ const { Schema } = mongoose;
 //let Person;
 
 const person = new Person({name:'john', age:'21', favoriteFoods:['fish','beer']})
-person.save(function(err, person){
-  if (err) throw err;
-  console.log(person)
-  done();
+person.save(function(err, data){
+  if (err){
+    return done(err);
+  }
+  console.log(data)
+  return done(null, data);
 });
 
 
