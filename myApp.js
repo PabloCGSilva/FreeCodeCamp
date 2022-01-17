@@ -12,11 +12,18 @@ const { Schema } = mongoose;
   const personSchema = new Schema({
     name:  String, // String is shorthand for {type: String}
     age: Number,
-    favoriteFoods: [{}],
+    favoriteFoods: [],
   });
   let Person = mongoose.model('Person', personSchema);
 
 //let Person;
+
+const person = new Person({name:'john', age:'21', favoriteFoods:['fish','beer']})
+person.save(function(err, data){
+  if (err) throw err;
+  console.log(person)
+});
+
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
@@ -47,7 +54,7 @@ const findEditThenSave = (personId, done) => {
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
 
-  done(null /*, data*/);
+  done(null /*, data*/);personModel
 };
 
 const removeById = (personId, done) => {
