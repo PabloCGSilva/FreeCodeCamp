@@ -6,16 +6,6 @@
 import express, { Router } from "express";
 const app = express();
 import mongoose from 'mongoose';
-
-const { Schema } = mongoose;
-
-  const personSchema = new Schema({
-    name:  String, // String is shorthand for {type: String}
-    age: Number,
-    favoriteFoods: [{}],
-  });
-  const Person = mongoose.model('Person', personSchema);
-
 /*try {
   mongoose = require("mongoose");
 } catch (e) {
