@@ -68,7 +68,7 @@ router.get("/is-mongoose-ok", function (req, res) {
     res.json({ isMongooseOk: false });
   }
 });
-
+https://mongoosemongodb.herokuapp.com/
 import { PersonModel as Person } from "./myApp.js";
 
 router.use(function (req, res, next) {
