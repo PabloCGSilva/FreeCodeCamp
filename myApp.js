@@ -10,7 +10,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
 const { Schema } = mongoose;
 
   const personSchema = new Schema({
-    name:  String, // String is shorthand for {type: String}
+    name:  String,
     age: Number,
     favoriteFoods: [],
   });
@@ -34,12 +34,13 @@ const createAndSavePerson = (done) => {
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-  var people = arrayOfPeople;
-  
-  people.create(err, data)
+  Person.create((err, data)=>{
+    if (err){
+      throw err;
+    }
     console.log(data)
     return done(null, data);
-  
+  });
 };
 
 const findPeopleByName = (personName, done) => {
