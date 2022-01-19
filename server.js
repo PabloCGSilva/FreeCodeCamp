@@ -52,13 +52,7 @@ app.get("/", function (req, res) {
 router.get("/file/*?", function (req, res, next) {
   if (req.params[0] === ".env") {
     return next({ status: 401, message: "ACCESS DENIED" });
-  }createManyPeople = (arrayOfPeople, done) => {
-  
-    Person.create((arrayOfPeople, (err, people))=>{if (err) return console.log(err);
-      done(null, people);
-    });
-  
-  };
+  }
   readFile(join(__dirname, req.params[0]), function (err, data) {
     if (err) {
       return next(err);
@@ -75,14 +69,14 @@ router.get("/is-mongoose-ok", function (req, res) {
   }
 });
 https://mongoosemongodb.herokuapp.com/
-import { PersonModel as Person } from "./myApp.js";
+/*import { PersonModel as Person } from "./myApp.js";
 
 router.use(function (req, res, next) {
   if (req.method !== "OPTIONS" && Person.modelName !== "Person") {
     return next({ message: "Person Model is not correct" });
   }
   next();
-});
+});*/
 
 router.post("/mongoose-model", function (req, res, next) {
   // try to create a new instance based on their model
