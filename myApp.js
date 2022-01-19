@@ -34,10 +34,14 @@ const createAndSavePerson = (done) => {
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-  arrayOfPeople.create((data)=>{
+  arrayOfPeople.create({name:'Names', age:'000', favoriteFoods:[]
+}, function(err, names){
+    if (err){
+      throw err;
+    }
     console.log(data)
     return done(null, data);
-  });
+  } )
 };
 
 const findPeopleByName = (personName, done) => {
