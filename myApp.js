@@ -34,7 +34,7 @@ const createAndSavePerson = (done) => {
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-  Person.create((err, data)=>{
+  arrayOfPeople.create((err, data)=>{
     if (err){
       throw err;
     }
